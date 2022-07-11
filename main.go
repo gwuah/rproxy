@@ -5,7 +5,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/gwuah/rproxy/proxy"
+	"github.com/gwuah/rproxy/bpf"
 )
 
 func main() {
@@ -18,14 +18,14 @@ func main() {
 	}
 
 	// Load bpf objects(program, maps) into the kernel
-	objs, err := proxy.LoadBPFObjectsIntoKernel()
+	objs, err := bpf.LoadBPFObjectsIntoKernel()
 	if err != nil {
 		log.Fatalf("failed to load bpf objects into kernel. err= %v:", err)
 	}
 	defer objs.Close()
 
 	// Attach the program.
-	l, err := proxy.AttachToHookpoint(objs, iface)
+	l, err := bpf.AttachToHookpoint(objs, iface)
 	if err != nil {
 		log.Fatalf("could not attach XDP program: %s", err)
 	}

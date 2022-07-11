@@ -8,6 +8,6 @@ deps:
 	go install
 
 proxy-files:
-	cd proxy; \
+	cd bpf; \
 	go generate ./...; \
-	rm -rf *_bpfeb.go && rm -rf *_bpfeb.o
+	rm -rf bpf_bpfeb.go && rm -rf bpf_bpfeb.o

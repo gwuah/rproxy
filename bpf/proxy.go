@@ -1,4 +1,4 @@
-package proxy
+package bpf
 
 import (
 	"net"
@@ -6,7 +6,7 @@ import (
 	"github.com/cilium/ebpf/link"
 )
 
-//go:generate go run github.com/cilium/ebpf/cmd/bpf2go -cc $BPF_CLANG -cflags $BPF_CFLAGS proxy proxy.c
+//go:generate go run github.com/cilium/ebpf/cmd/bpf2go -cc $BPF_CLANG -cflags $BPF_CFLAGS bpf ../proxy.c
 
 func LoadBPFObjectsIntoKernel() (*proxyObjects, error) {
 	objs := proxyObjects{}
